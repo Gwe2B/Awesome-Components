@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Post } from '../../models/post.model';
 
 @Component({
@@ -8,4 +8,9 @@ import { Post } from '../../models/post.model';
 })
 export class PostListItemComponent {
   @Input() post!: Post;
+  @Output() postCommented = new EventEmitter<{comment: string, postId: number}>();
+
+  onNewComment(comment: string): void {
+    this.postCommented.emit({comment : comment, postId: this.post.id});
+  }
 }
