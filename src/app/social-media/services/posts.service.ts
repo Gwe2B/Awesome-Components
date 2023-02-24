@@ -10,9 +10,7 @@ export class PostsService {
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${environment.apiUrl}/posts`).pipe(
-      tap((data) => console.log(data))
-    );
+    return this.http.get<Post[]>(`${environment.apiUrl}/posts`);
   }
 
   addNewComment(postCommented: {comment: string, postId: number}): void {
